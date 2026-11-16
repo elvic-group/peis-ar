@@ -10,29 +10,29 @@
   * { box-sizing: border-box; }
   html, body { margin:0; height:100%; background:var(--bg); color:var(--fg);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { display:flex; flex-direction:column; min-height:100%; }
-  header { padding:20px 16px 0; text-align:center; }
+  main { display:flex; flex-direction:column; height:100svh; min-height:560px; }
+  header { padding:14px 16px 0; text-align:center; }
   h1 { margin:0; font-size:1.4rem; font-weight:600; }
   p { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
-  model-viewer { width:100%; height:62vh; background:radial-gradient(circle at 50% 55%, #2a2522 0%, var(--bg) 70%); }
-  .ar-btn { position:absolute; left:50%; bottom:20px; transform:translateX(-50%);
+  model-viewer { flex:1; width:100%; min-height:0; background:radial-gradient(circle at 50% 55%, #2a2522 0%, var(--bg) 70%); }
+  .ar-btn { position:absolute; left:50%; bottom:16px; transform:translateX(-50%);
     background:var(--accent); color:#fff; border:0; border-radius:999px; padding:14px 24px;
     font-size:1rem; font-weight:600; box-shadow:0 6px 20px rgba(0,0,0,.4); }
   .alt { display:block; margin:14px 16px 0; padding:14px; border-radius:12px; background:#2a2522;
     color:#fff; text-align:center; text-decoration:none; font-weight:600; }
-  footer { padding:14px 16px 20px; text-align:center; color:var(--muted); font-size:.8rem; }
+  footer { padding:8px 16px 14px; text-align:center; color:var(--muted); font-size:.8rem; }
 </style>
 </head>
 <body>
 <main>
   <header>
     <h1>Peisen i 3D</h1>
-    <p>Dra for å snu, klyp for å zoome. Trykk knappen for å se den i rommet ditt.</p>
+    <p>Dra for å snu, klyp for å zoome.</p>
   </header>
   <model-viewer id="mv" src="peis_fire3.glb" ios-src="peis_fire3.usdz" autoplay poster="thumbnail.png"
       alt="3D-modell av en hengende sylinderpeis med levende flammer"
       ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" ar-placement="floor"
-      camera-controls touch-action="pan-y" auto-rotate rotation-per-second="20deg"
+      camera-controls touch-action="pan-y" camera-target="0m -0.22m 0m" camera-orbit="0deg 80deg 106%" min-camera-orbit="auto auto 30%"
       shadow-intensity="1" exposure="1.05" environment-image="neutral">
     <button slot="ar-button" class="ar-btn">Se i ditt rom</button>
   </model-viewer>
