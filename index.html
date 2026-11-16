@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peisen i 3D</title>
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  :root { --bg:#141414; --fg:#f3efe9; --muted:#a9a39b; --accent:#e8742c; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { display:flex; flex-direction:column; height:100%; }
+  header { padding:20px 16px 0; text-align:center; }
+  h1 { margin:0; font-size:1.4rem; font-weight:600; letter-spacing:.01em; }
+  p { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+  model-viewer { flex:1; width:100%; min-height:60vh; background:radial-gradient(circle at 50% 55%, #2a2522 0%, var(--bg) 70%);
+    --poster-color: transparent; }
+  .ar-btn { position:absolute; left:50%; bottom:24px; transform:translateX(-50%);
+    background:var(--accent); color:#fff; border:0; border-radius:999px; padding:14px 24px;
+    font-size:1rem; font-weight:600; box-shadow:0 6px 20px rgba(0,0,0,.4); cursor:pointer; }
+  footer { padding:10px 16px 18px; text-align:center; color:var(--muted); font-size:.8rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Peisen i 3D</h1>
+    <p>Dra for å snu, klyp for å zoome. Trykk knappen for å se den i rommet ditt.</p>
+  </header>
+  <model-viewer src="peis.glb" ios-src="peis.usdz" poster="thumbnail.png"
+      alt="3D-modell av en hengende sylinderpeis i mørkt stål"
+      ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" ar-placement="floor"
+      camera-controls touch-action="pan-y" auto-rotate rotation-per-second="20deg"
+      shadow-intensity="1" exposure="1.05" environment-image="neutral">
+    <button slot="ar-button" class="ar-btn">Se i ditt rom</button>
+  </model-viewer>
+  <footer>Fungerer på iPhone (AR Quick Look) og Android (Scene Viewer).</footer>
+</main>
+</body>
+</html>
