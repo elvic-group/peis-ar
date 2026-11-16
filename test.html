@@ -1,0 +1,18 @@
+<!doctype html><html lang="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AR-test</title>
+<style>body{margin:0;padding:20px 16px;background:#141414;color:#f3efe9;font-family:system-ui,sans-serif}
+a{display:block;margin:14px 0;padding:18px;border-radius:12px;background:#2a2522;color:#fff;text-decoration:none;font-size:1.1rem}
+b{color:#e8742c;font-size:1.3rem;margin-right:8px}small{color:#a9a39b}</style></head><body>
+<h2>AR-test</h2><p><small>Trykk hver knapp. Noter for hvert nummer: åpnet den seg i rommet (ja/nei), og ev. hvilken feilmelding.</small></p>
+<div id="l"></div>
+<script>
+const items=[["1","Gammel statisk peis (kontroll)","v_old.glb"],["2","Ny peis, ingen animasjon","v_static.glb"],
+ ["3","Animert ild, uten gjennomsiktig glass","v_noalpha.glb"],["4","Animert ild, enkel flamme-shader","v_unlit.glb"],
+ ["5","Full versjon (som på hovedsiden)","peis_fire3.glb"]];
+const fb=encodeURIComponent("https://play.google.com/store/apps/details?id=com.google.ar.core");
+document.getElementById("l").innerHTML=items.map(([k,t,f])=>{
+ const u=encodeURIComponent(new URL(f,location.href).href);
+ const href="intent://arvr.google.com/scene-viewer/1.0?file="+u+"&mode=ar_preferred&title=Test%20"+k+
+  "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url="+fb+";end;";
+ return `<a href="${href}"><b>${k}</b>${t}</a>`}).join("");
+</script></body></html>
