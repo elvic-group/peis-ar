@@ -1,0 +1,17 @@
+<!doctype html><html lang="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AR-test</title>
+<style>body{margin:0;padding:20px 16px;background:#141414;color:#f3efe9;font-family:system-ui,sans-serif}
+a{display:block;margin:14px 0;padding:16px;border-radius:12px;background:#2a2522;color:#fff;text-decoration:none;font-size:1.05rem}
+small{color:#a9a39b}</style></head><body>
+<h2>AR-test: trykk hver knapp</h2><p><small>Noter hva som skjer for A, B, C og D.</small></p>
+<div id="l"></div>
+<script>
+const items=[["A","Gammel peis (virket før)","peis.glb"],["B","Ny peis, uten animasjon","test_static.glb"],
+ ["C","Ny peis, bare flimring","test_flicker.glb"],["D","Ny peis, full animert ild","peis_fire2.glb"]];
+const fb=encodeURIComponent("https://play.google.com/store/apps/details?id=com.google.ar.core");
+document.getElementById("l").innerHTML=items.map(([k,t,f])=>{
+ const u=encodeURIComponent(new URL(f,location.href).href);
+ const href="intent://arvr.google.com/scene-viewer/1.0?file="+u+"&mode=ar_preferred&title="+k+
+  "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url="+fb+";end;";
+ return `<a href="${href}"><b>${k}</b> – ${t}</a>`}).join("");
+</script></body></html>
