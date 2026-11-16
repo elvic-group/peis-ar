@@ -28,7 +28,7 @@
     <h1>Peisen i 3D</h1>
     <p>Dra for å snu, klyp for å zoome. Trykk knappen for å se den i rommet ditt.</p>
   </header>
-  <model-viewer src="peis_fire.glb" ios-src="peis_fire.usdz" autoplay poster="thumbnail.png"
+  <model-viewer src="peis_fire2.glb" ios-src="peis_fire2.usdz" autoplay poster="thumbnail.png"
       alt="3D-modell av en hengende sylinderpeis i mørkt stål"
       ar ar-modes="scene-viewer quick-look webxr" ar-scale="auto" ar-placement="floor"
       camera-controls touch-action="pan-y" auto-rotate rotation-per-second="20deg"
@@ -36,14 +36,14 @@
     <button slot="ar-button" class="ar-btn">Se i ditt rom</button>
   </model-viewer>
   <p id="ar-fallback" hidden style="text-align:center;padding:0 16px">
-    AR startet ikke. <a id="sv-link" style="color:var(--accent)">Åpne i Google Scene Viewer</a>
+    Startet ikke AR? <a id="sv-link" style="color:var(--accent)">Åpne i Google Scene Viewer</a>
     (krever Google-appen og «Google Play Services for AR»).
   </p>
   <footer>Fungerer på iPhone (AR Quick Look) og Android (Scene Viewer).</footer>
 </main>
 <script>
   // Android fallback: direct Scene Viewer intent if model-viewer's AR launch fails.
-  const glb = new URL("peis_fire.glb", location.href).href;
+  const glb = new URL("peis_fire2.glb", location.href).href;
   const intent = "intent://arvr.google.com/scene-viewer/1.0?file=" + encodeURIComponent(glb) +
     "&mode=ar_preferred&title=" + encodeURIComponent("Peisen") +
     "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;" +
