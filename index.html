@@ -28,7 +28,7 @@
     <h1>Peisen i 3D</h1>
     <p>Dra for å snu, klyp for å zoome. Trykk knappen for å se den i rommet ditt.</p>
   </header>
-  <model-viewer src="peis.glb" ios-src="peis.usdz" poster="thumbnail.png"
+  <model-viewer src="peis_fire.glb" ios-src="peis_fire.usdz" autoplay poster="thumbnail.png"
       alt="3D-modell av en hengende sylinderpeis i mørkt stål"
       ar ar-modes="scene-viewer quick-look webxr" ar-scale="auto" ar-placement="floor"
       camera-controls touch-action="pan-y" auto-rotate rotation-per-second="20deg"
@@ -43,7 +43,7 @@
 </main>
 <script>
   // Android fallback: direct Scene Viewer intent if model-viewer's AR launch fails.
-  const glb = new URL("peis.glb", location.href).href;
+  const glb = new URL("peis_fire.glb", location.href).href;
   const intent = "intent://arvr.google.com/scene-viewer/1.0?file=" + encodeURIComponent(glb) +
     "&mode=ar_preferred&title=" + encodeURIComponent("Peisen") +
     "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;" +
