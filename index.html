@@ -30,12 +30,30 @@
   </header>
   <model-viewer src="peis.glb" ios-src="peis.usdz" poster="thumbnail.png"
       alt="3D-modell av en hengende sylinderpeis i mørkt stål"
-      ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" ar-placement="floor"
+      ar ar-modes="scene-viewer quick-look webxr" ar-scale="auto" ar-placement="floor"
       camera-controls touch-action="pan-y" auto-rotate rotation-per-second="20deg"
       shadow-intensity="1" exposure="1.05" environment-image="neutral">
     <button slot="ar-button" class="ar-btn">Se i ditt rom</button>
   </model-viewer>
+  <p id="ar-fallback" hidden style="text-align:center;padding:0 16px">
+    AR startet ikke. <a id="sv-link" style="color:var(--accent)">Åpne i Google Scene Viewer</a>
+    (krever «Google Play Services for AR»).
+  </p>
   <footer>Fungerer på iPhone (AR Quick Look) og Android (Scene Viewer).</footer>
 </main>
+<script>
+  // Android fallback: direct Scene Viewer intent if model-viewer's AR launch fails.
+  const glb = new URL("peis.glb", location.href).href;
+  const intent = "intent://arvr.google.com/scene-viewer/1.0?file=" + encodeURIComponent(glb) +
+    "&mode=ar_preferred&title=" + encodeURIComponent("Peisen") +
+    "#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;" +
+    "S.browser_fallback_url=" + encodeURIComponent("https://play.google.com/store/apps/details?id=com.google.ar.core") + ";end;";
+  document.getElementById("sv-link").href = intent;
+  const mv = document.querySelector("model-viewer");
+  mv.addEventListener("ar-status", e => {
+    if (e.detail.status === "failed") document.getElementById("ar-fallback").hidden = false;
+  });
+  if (/Android/i.test(navigator.userAgent)) document.getElementById("ar-fallback").hidden = false;
+</script>
 </body>
 </html>
